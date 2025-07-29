@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Job Finder</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text, Gabarito for headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for Animated Gradient Background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #e0e0e0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        /* Overlay for better contrast and depth */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4); /* Slightly darker overlay */
+            z-index: -1;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Custom glow effect for interactive elements */
+        .glow-button {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.6), 0 0 30px rgba(255, 0, 128, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8), 0 0 50px rgba(255, 0, 128, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.08); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Depth */
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            transform-style: preserve-3d; /* Enable 3D transforms for children */
+        }
+
+        /* 3D hover effect for cards */
+        .glass-card:hover {
+            transform: rotateY(5deg) rotateX(3deg) scale(1.02);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 240, 255, 0.4); /* Enhanced shadow with glow */
+        }
+
+        /* Section fade-in animation */
+        .section-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero image floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-image-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Job count animation (from previous code, slightly adapted) */
+        @keyframes countUp {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .count-animation-text {
+            animation: countUp 1s forwards;
+            counter-reset: jobCount 0; /* Initialize counter */
+        }
+        .count-animation-text::before {
+            content: "+";
+        }
+        .count-animation-text span {
+            font-variant-numeric: tabular-nums; /* Ensures numbers align */
+        }
+
+        /* Custom heading underline effect */
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 80px; /* Shorter line */
+            height: 4px;
+            background: linear-gradient(90deg, #00f0ff, #ff0080);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+
+        /* Responsive adjustments for the navigation button */
+        @media (max-width: 768px) {
+            nav button {
+                position: static; /* Remove fixed positioning on small screens */
+                margin-left: auto; /* Push to the right */
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero-image {
+                display: none; /* Hide hero image on small screens for better content focus */
+            }
+            .hero-section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .ar {
+                margin-right: 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            #so {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            #so select {
+                width: 90%;
+            }
+            #so select:first-child {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <!-- Header/Navbar -->
+    <header class="bg-gray-900 bg-opacity-60 backdrop-blur-lg fixed w-full z-50 shadow-xl">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <img src="https://placehold.co/40x40/00f0ff/ff0080?text=JP" alt="Job Portal Logo" class="rounded-full">
+                <!-- Dream Job Logo now links to the hero section -->
+                <a href="#hero" class="text-2xl font-bold text-cyan-400 drop-shadow-lg hover:text-cyan-300 transition duration-300 ease-in-out">
+                    Dream<span class="text-pink-500">Job</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#hero" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Home</a>
+                <a href="#browse-jobs" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Browse Jobs</a>
+                <a href="#skills" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Skills</a>
+                <a href="#projects" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Projects</a>
+                <a href="#contact" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Contact</a>
+                <!-- Login button with an ID for JavaScript -->
+                <a href="#" id="loginButton" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Login</a>
+            </div>
+            <!-- Post a Job button (already active with alert) -->
+            <button id="postJobButton" class="bg-gradient-to-r from-green-400 to-emerald-600 text-white px-5 py-2 rounded-full font-semibold hover:from-green-500 hover:to-emerald-700 transition duration-300 ease-in-out glow-button">
+                Post a Job
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section flex flex-col md:flex-row items-center justify-center min-h-screen px-6 py-24 md:py-0 relative section-hidden">
+            <div class="ar max-w-2xl text-center md:text-left p-8 rounded-xl glass-card">
+                <h4 class="text-3xl font-gabarito text-cyan-300 mb-2 count-animation-text">
+                    <span id="jobCountSpan">0</span> Jobs listed
+                </h4>
+                <h1 class="text-5xl md:text-7xl font-gabarito font-bold text-white leading-tight mb-4 drop-shadow-lg animate-fade-in-left">
+                    Find your <span class="text-pink-500">Dream Job</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8 animate-fade-in-left delay-200">
+                    We connect talented individuals with top companies, offering a seamless job search experience.
+                </p>
+                <button id="uploadResumeButton" class="bg-gradient-to-r from-pink-500 to-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-pink-600 hover:to-red-700 transition duration-300 ease-in-out glow-button">
+                    Upload your Resume
+                </button>
+            </div>
+            <div class="hero-image mt-12 md:mt-0 md:ml-20">
+                <img src="https://media.licdn.com/dms/image/v2/D4E22AQHTEYo5gtoQyg/feedshare-shrink_1280/feedshare-shrink_1280/0/1710785384726?e=1756944000&v=beta&t=AzQykXy2wuOLSr8sDlHf64QB7ojqJkX8_t8crQdnetk" alt="Abstract job search illustration" class="w-72 md:w-96 rounded-3xl shadow-2xl hero-image-float glass-card">
+            </div>
+        </section>
+
+        <!-- Search Bar Section -->
+        <section id="browse-jobs" class="py-12 section-hidden">
+            <div id="so" class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-4 bg-gray-800 bg-opacity-70 rounded-xl p-6 shadow-lg">
+                <select class="p-3 rounded-lg border-none focus:ring-2 focus:ring-cyan-400 bg-gray-700 text-white text-base">
+                    <option>Search Keyword</option>
+                    <option>Web Developer</option>
+                    <option>Machine Learning</option>
+                    <option>AI Engineer</option>
+                    <option>Data Scientist</option>
+                </select>
+                <select class="p-3 rounded-lg border-none focus:ring-2 focus:ring-cyan-400 bg-gray-700 text-white text-base">
+                    <option>Location</option>
+                    <option>New York</option>
+                    <option>London</option>
+                    <option>Singapore</option>
+                    <option>Remote</option>
+                </select>
+                <select class="p-3 rounded-lg border-none focus:ring-2 focus:ring-cyan-400 bg-gray-700 text-white text-base">
+                    <option>Category</option>
+                    <option>Software Development</option>
+                    <option>Data Science</option>
+                    <option>Marketing</option>
+                    <option>Design</option>
+                </select>
+                <button id="findJobSearchButton" class="bg-gradient-to-r from-cyan-400 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:from-cyan-500 hover:to-blue-700 transition duration-300 ease-in-out glow-button">
+                    Find Jobs
+                </button>
+            </div>
+        </section>
+
+        <!-- Skills Section (Placeholder) -->
+        <section id="skills" class="py-20 section-hidden">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-gabarito font-bold text-white mb-12 section-heading drop-shadow-lg">My <span class="text-cyan-400">Skills</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-xl text-center">
+                        <h3 class="text-2xl font-semibold text-cyan-300 mb-4">Web Development</h3>
+                        <p class="text-gray-300">HTML, CSS, JavaScript, React, Node.js, Express, MongoDB</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl text-center">
+                        <h3 class="text-2xl font-semibold text-pink-400 mb-4">Data Science</h3>
+                        <p class="text-gray-300">Python, Pandas, NumPy, Scikit-learn, TensorFlow, Keras</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl text-center">
+                        <h3 class="text-2xl font-semibold text-green-400 mb-4">Cloud Computing</h3>
+                        <p class="text-gray-300">AWS, Google Cloud Platform, Docker, Kubernetes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Placeholder) -->
+        <section id="projects" class="py-20 section-hidden">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-gabarito font-bold text-white mb-12 section-heading drop-shadow-lg">Recent <span class="text-pink-400">Projects</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-xl">
+                        <h3 class="text-2xl font-semibold text-cyan-300 mb-4">E-commerce Platform</h3>
+                        <p class="text-gray-300">A full-stack e-commerce solution with user authentication and payment integration.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl">
+                        <h3 class="text-2xl font-semibold text-green-400 mb-4">AI Chatbot</h3>
+                        <p class="text-gray-300">Developed an intelligent chatbot using natural language processing.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-xl">
+                        <h3 class="text-2xl font-semibold text-pink-400 mb-4">Portfolio Website</h3>
+                        <p class="text-gray-300">A personal portfolio showcasing various projects and skills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Placeholder) -->
+        <section id="contact" class="py-20 section-hidden">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-gabarito font-bold text-white mb-12 section-heading drop-shadow-lg">Get in <span class="text-cyan-400">Touch</span></h2>
+                <div class="glass-card p-8 rounded-xl max-w-md mx-auto">
+                    <p class="text-lg text-gray-300 mb-4">Have a question or want to collaborate? Feel free to reach out!</p>
+                    <p class="text-xl text-cyan-300 mb-2">Email: <a href="mailto:contact@dreamjob.com" class="hover:underline">contact@dreamjob.com</a></p>
+                    <p class="text-xl text-pink-400">Phone: <a href="tel:+1234567890" class="hover:underline">7988******</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 bg-opacity-70 text-center py-6 text-gray-400 text-sm mt-12">
+        <p>&copy; Mehul Goyal DreamJob. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Job Count Animation
+        window.onload = function() {
+            const jobCountSpan = document.getElementById('jobCountSpan');
+            let jobCount = 0;
+            const targetCount = 1500;
+            const duration = 2000; // 2 seconds
+            const increment = targetCount / (duration / 10); // Calculate increment based on duration and interval
+
+            function updateCount() {
+                jobCount += increment;
+                if (jobCount >= targetCount) {
+                    jobCount = targetCount;
+                    jobCountSpan.textContent = Math.floor(jobCount);
+                    return;
+                }
+                jobCountSpan.textContent = Math.floor(jobCount);
+                requestAnimationFrame(updateCount);
+            }
+            requestAnimationFrame(updateCount);
+
+            // "Upload your Resume" button functionality
+            const uploadResumeButton = document.getElementById('uploadResumeButton');
+            uploadResumeButton.addEventListener('click', () => {
+                alert('Resume upload functionality coming soon! This button is now active.');
+            });
+
+            // "Find Jobs" search button functionality
+            const findJobSearchButton = document.getElementById('findJobSearchButton');
+            findJobSearchButton.addEventListener('click', () => {
+                alert('Searching for jobs based on your criteria...');
+            });
+
+            // Make Login button active
+            const loginButton = document.getElementById('loginButton');
+            loginButton.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                alert('Login functionality coming soon!');
+            });
+
+            // Make Post a Job button active
+            const postJobButton = document.getElementById('postJobButton');
+            postJobButton.addEventListener('click', () => {
+                alert('Post a Job functionality coming soon!');
+            });
+        };
+
+        // Section Fade-in on Scroll (Intersection Observer)
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null, /* viewport */
+            rootMargin: '0px',
+            threshold: 0.1 /* 10% of section visible */
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('section-hidden');
+                    entry.target.classList.add('section-visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            section.classList.add('section-hidden'); // Add hidden class initially
+            sectionObserver.observe(section);
+        });
+    </script>
+</body>
+</html>
