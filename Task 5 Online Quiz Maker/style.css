@@ -1,0 +1,242 @@
+/* Custom CSS for Animated Gradient Background */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: #e0e0e0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    min-height: 100vh; /* Ensure body takes full height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Overlay for better contrast and depth */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4); /* Slightly darker overlay */
+    z-index: -1;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Custom glow effect for interactive elements */
+.glow-button {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.6), 0 0 30px rgba(255, 0, 128, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+.glow-button:hover {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.8), 0 0 50px rgba(255, 0, 128, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Glassmorphism effect for cards */
+.glass-card {
+    background-color: rgba(255, 255, 255, 0.08); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Depth */
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform-style: preserve-3d; /* Enable 3D transforms for children */
+}
+
+/* 3D hover effect for cards */
+.glass-card:hover {
+    transform: rotateY(5deg) rotateX(3deg) scale(1.02);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 240, 255, 0.4); /* Enhanced shadow with glow */
+}
+
+/* Section fade-in animation */
+.section-hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Floating hero image animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero-image-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Custom heading underline effect */
+.section-heading::after {
+    content: '';
+    display: block;
+    width: 80px; /* Shorter line */
+    height: 4px;
+    background: linear-gradient(90deg, #00f0ff, #ff0080);
+    margin: 8px auto 0; /* Center the underline */
+    border-radius: 2px;
+}
+/* Adjust for left-aligned headings */
+.section-heading.text-left::after {
+    margin-left: 0;
+}
+
+
+/* General layout for main content sections */
+main > section {
+    min-height: calc(100vh - 80px - 60px); /* viewport height - header - footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px; /* Offset for fixed header */
+    padding-bottom: 60px; /* Offset for fixed footer */
+}
+
+/* Specific styles for Mini Test */
+.mini-test-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%; /* Responsive width */
+    max-width: 700px; /* Max width for larger screens */
+    min-height: 50vh; /* Use viewport height */
+    padding: 2rem;
+    border-radius: 1.5rem; /* Rounded corners */
+}
+.mini-test-buttons.notactive {
+    display: none;
+}
+.mini-test-buttons.active {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.mini-test-btn-primary {
+    background: linear-gradient(45deg, #00f0ff, #ff0080);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Fully rounded */
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.mini-test-btn-primary:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 20px rgba(0,240,255,0.7);
+}
+
+/* Category buttons styling */
+.category-btn.selected {
+    background: linear-gradient(45deg, #00f0ff, #ff0080);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+/* Leaderboard specific styles */
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.leaderboard-entry:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.leaderboard-entry img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    border: 2px solid #00f0ff;
+}
+
+.leaderboard-entry .rank {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff0080;
+    margin-right: 1rem;
+    width: 30px;
+    text-align: center;
+}
+
+.leaderboard-entry .name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    flex-grow: 1;
+}
+
+.leaderboard-entry .score {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #00f0ff;
+}
+
+.stars {
+    color: gold;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav button {
+        position: static;
+        margin-left: auto;
+    }
+    .hero-content {
+        text-align: center;
+    }
+    .hero-image-container {
+        display: none; /* Hide hero image on small screens for better content focus */
+    }
+    .home-section .glass-card {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .mini-test-wrapper {
+        width: 95%;
+        padding: 1rem;
+    }
+    .mini-test-buttons.active {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .home-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .section-heading::after {
+        margin-left: auto; /* Center on mobile too */
+        margin-right: auto;
+    }
+}

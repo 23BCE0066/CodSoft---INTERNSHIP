@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immersive QuizMaster</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text, Gabarito for headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-inter">
+    <!-- Header/Navbar -->
+    <header class="bg-gray-900 bg-opacity-60 backdrop-blur-lg fixed w-full z-50 shadow-xl">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <img src="https://placehold.co/40x40/00f0ff/ff0080?text=QM" alt="Quiz Maker Logo" class="rounded-full">
+                <a href="#home-section" class="text-2xl font-bold text-cyan-400 drop-shadow-lg hover:text-cyan-300 transition duration-300 ease-in-out">
+                    Quiz<span class="text-pink-500">Master</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home-section" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Home</a>
+                <a href="#create-quiz-section" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Create Quiz</a>
+                <a href="#quiz-listing-section" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Take Quiz</a>
+                <a href="#contact-us-section" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium">Contact Us</a>
+                <button id="loginRegisterBtn" class="text-white hover:text-cyan-300 transition duration-300 ease-in-out font-medium bg-transparent border-none cursor-pointer">Login/Register</button>
+            </div>
+            <button id="newQuizBtn" class="bg-gradient-to-r from-green-400 to-emerald-600 text-white px-5 py-2 rounded-full font-semibold hover:from-green-500 hover:to-emerald-700 transition duration-300 ease-in-out glow-button">
+                New Quiz
+            </button>
+        </nav>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <!-- Home Section -->
+        <section id="home-section" class="home-section flex flex-col md:flex-row items-center justify-center min-h-screen px-6 py-24 relative section-hidden">
+            <div class="max-w-2xl text-center md:text-left p-8 rounded-xl glass-card md:mr-12">
+                <h1 class="text-5xl md:text-7xl font-gabarito font-bold text-white leading-tight mb-4 drop-shadow-lg">
+                    Unleash Your <span class="text-pink-500">Knowledge</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8">
+                    Create, share, and challenge yourself with engaging quizzes. From quick tests to in-depth assessments, QuizMaster is your go-to platform for learning and fun. Our platform makes it easy to build custom quizzes for any topic, track your progress, and compete with friends. Dive into a world of endless learning possibilities!
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center sm:justify-start space-y-4 sm:space-y-0 sm:space-x-4 home-buttons">
+                    <button id="homeCreateQuizBtn" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-blue-600 hover:to-indigo-700 transition duration-300 ease-in-out glow-button">
+                        Create a Quiz
+                    </button>
+                    <button id="homeTakeQuizBtn" class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-emerald-600 hover:to-green-700 transition duration-300 ease-in-out glow-button">
+                        Take a Quiz
+                    </button>
+                    <button id="homeMiniTestBtn" class="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-700 transition duration-300 ease-in-out glow-button">
+                        Try Mini Test
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image-container mt-12 md:mt-0">
+                <img src="https://media.licdn.com/dms/image/v2/D4E22AQHTEYo5gtoQyg/feedshare-shrink_480/feedshare-shrink_480/0/1710785384726?e=1756944000&v=beta&t=QxgK3swku9cNdC6cjYFgBJLD1TybpTezR6nTQN_H9V4" alt="Abstract illustration of quiz taking" class="w-72 md:w-96 rounded-3xl shadow-2xl hero-image-float glass-card">
+            </div>
+            <!-- Quiz Preferences Section -->
+            <div class="glass-card p-6 rounded-xl shadow-lg mt-12 w-full max-w-2xl text-center">
+                <h3 class="text-3xl font-gabarito font-bold text-white mb-6 section-heading inline-block">
+                    Choose Your <span class="text-cyan-400">Quiz Adventure</span>
+                </h3>
+                <p class="text-gray-300 mb-6">Select your preferred quiz categories to find tests tailored to your interests!</p>
+                <div class="flex flex-wrap justify-center gap-4 mb-4">
+                    <button data-category="Math" class="category-btn bg-gray-700 text-white px-5 py-2 rounded-full font-semibold hover:bg-gray-600 transition duration-300 glow-button">Math</button>
+                    <button data-category="Science" class="category-btn bg-gray-700 text-white px-5 py-2 rounded-full font-semibold hover:bg-gray-600 transition duration-300 glow-button">Science</button>
+                    <button data-category="History" class="category-btn bg-gray-700 text-white px-5 py-2 rounded-full font-semibold hover:bg-gray-600 transition duration-300 glow-button">History</button>
+                    <button data-category="Programming" class="category-btn bg-gray-700 text-white px-5 py-2 rounded-full font-semibold hover:bg-gray-600 transition duration-300 glow-button">Programming</button>
+                    <button data-category="General Knowledge" class="category-btn bg-gray-700 text-white px-5 py-2 rounded-full font-semibold hover:bg-gray-600 transition duration-300 glow-button">General Knowledge</button>
+                    <button data-category="All" class="category-btn bg-gradient-to-r from-purple-500 to-pink-600 text-white px-5 py-2 rounded-full font-semibold hover:from-purple-600 hover:to-pink-700 transition duration-300 glow-button">Show All</button>
+                </div>
+                <div id="categoryDescription" class="text-left text-gray-400 text-sm mt-4 p-3 rounded-lg bg-gray-800 bg-opacity-50 border border-gray-700">
+                    <!-- Category specific descriptions will appear here -->
+                    <p>Click on a category above to learn more about the types of quizzes available!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Creation Section -->
+        <section id="create-quiz-section" class="container mx-auto px-4 py-8 section-hidden">
+            <h2 class="text-4xl font-gabarito font-bold text-white mb-8 section-heading drop-shadow-lg text-center">
+                Create <span class="text-cyan-400">New Quiz</span>
+            </h2>
+            <div class="glass-card p-6 rounded-xl shadow-lg mb-8 w-full max-w-2xl mx-auto">
+                <input type="text" id="quizTitle" placeholder="Quiz Title" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-400 text-xl">
+                <input type="text" id="quizCategory" placeholder="Quiz Category (e.g., Math, Science, History)" class="w-full p-3 mb-4 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-400 text-xl">
+                <textarea id="quizDescription" placeholder="Quiz Description (Optional)" class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-400 h-24"></textarea>
+            </div>
+
+            <div id="questionsContainer" class="w-full max-w-2xl mx-auto">
+                <!-- Questions will be added here by JS -->
+            </div>
+
+            <div class="flex justify-center space-x-4 mt-8">
+                <button id="addQuestionBtn" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-full font-semibold hover:from-green-600 hover:to-emerald-700 transition duration-300 glow-button">
+                    Add Question
+                </button>
+                <button id="saveQuizBtn" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-600 hover:to-indigo-700 transition duration-300 glow-button">
+                    Save Quiz
+                </button>
+            </div>
+        </section>
+
+        <!-- Quiz Listing Section -->
+        <section id="quiz-listing-section" class="container mx-auto px-4 py-8 section-hidden">
+            <h2 class="text-4xl font-gabarito font-bold text-white mb-8 section-heading drop-shadow-lg text-center">
+                Available <span class="text-pink-400">Quizzes</span>
+            </h2>
+            <div id="quizList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
+                <!-- Quizzes will be listed here by JS -->
+            </div>
+            <p id="noQuizzesMessage" class="text-gray-300 text-center text-lg mt-8 hidden">No quizzes available. Why not <button id="createQuizFromListBtn" class="text-cyan-400 hover:underline">create one</button>?</p>
+
+            <h2 class="text-4xl font-gabarito font-bold text-white mb-8 mt-12 section-heading drop-shadow-lg text-center">
+                Quiz <span class="text-cyan-400">History & Leaderboard</span>
+            </h2>
+            <div id="quizHistoryList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl mx-auto">
+                <!-- Quiz history will be listed here by JS -->
+            </div>
+            <p id="noQuizHistoryMessage" class="text-gray-300 text-center text-lg mt-8 hidden">No quiz history available yet. Take a quiz to see your results here!</p>
+
+            <h3 class="text-3xl font-gabarito font-bold text-white mb-6 mt-12 section-heading drop-shadow-lg text-center">
+                Top <span class="text-pink-400">Achievers</span>
+            </h3>
+            <div id="leaderboard" class="glass-card p-6 rounded-xl shadow-lg w-full max-w-2xl mx-auto">
+                <!-- Leaderboard will be rendered here -->
+                <p class="text-gray-300 text-center" id="noLeaderboardMessage">No scores yet to form a leaderboard. Be the first!</p>
+            </div>
+        </section>
+
+        <!-- Quiz Taking Section -->
+        <section id="quiz-taking-section" class="container mx-auto px-4 py-8 section-hidden">
+            <h2 id="quizTakingTitle" class="text-4xl font-gabarito font-bold text-white mb-8 section-heading drop-shadow-lg text-center">
+                Taking Quiz
+            </h2>
+            <div id="quizTakingContent" class="glass-card p-8 rounded-xl shadow-lg mb-8 w-full max-w-2xl mx-auto">
+                <!-- Quiz questions will appear here -->
+            </div>
+        </section>
+
+        <!-- Quiz Results Section -->
+        <section id="quiz-results-section" class="container mx-auto px-4 py-8 section-hidden">
+            <h2 class="text-4xl font-gabarito font-bold text-white mb-8 section-heading drop-shadow-lg text-center">
+                Quiz <span class="text-pink-400">Results</span>
+            </h2>
+            <div id="quizResultsContent" class="glass-card p-8 rounded-xl shadow-lg text-center mb-8 w-full max-w-2xl mx-auto">
+                <!-- Quiz results will appear here -->
+            </div>
+        </section>
+
+        <!-- Mini Test Section -->
+        <section id="mini-test-section" class="container mx-auto px-4 py-8 section-hidden flex items-center justify-center">
+            <div class="glass-card p-8 rounded-xl shadow-lg text-center max-w-md w-full mini-test-wrapper section-hidden" id="miniTestWrapper">
+                <h1 id="miniTestMainText" class="text-5xl font-gabarito font-bold text-white leading-tight mb-4 drop-shadow-lg">
+                    Welcome to Our <span class="text-pink-500">Mini Test!</span>
+                </h1>
+                <h2 id="miniTestUsername" class="text-2xl text-cyan-400 mb-4"></h2>
+
+                <div class="mini-test-buttons notactive" id="miniTestButtons">
+                    <button type="button" class="mini-test-btn-primary" id="miniTestBtnY">YES!</button>
+                    <button type="button" class="mini-test-btn-primary" id="miniTestBtnN">NO!</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact-us-section" class="container mx-auto px-4 py-8 section-hidden">
+            <h2 class="text-4xl font-gabarito font-bold text-white mb-8 section-heading drop-shadow-lg text-center">
+                Get in <span class="text-cyan-400">Touch</span>
+            </h2>
+            <div class="glass-card p-8 rounded-xl shadow-lg max-w-md mx-auto text-center">
+                <p class="text-lg text-gray-300 mb-4">Have a question, feedback, or just want to connect? Reach out to us!</p>
+                <div class="space-y-4 text-left">
+                    <p class="text-xl text-cyan-300 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 13h9a2 2 0 002-2V7a2 2 0 00-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Email: <a href="mailto:mehulgoyal@gmail.com" class="hover:underline ml-2">mehulgoyal@gmail.com</a>
+                    </p>
+                    <p class="text-xl text-pink-400 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        Phone: <a href="tel:+917988888888" class="hover:underline ml-2">+91 7988888888</a>
+                    </p>
+                    <p class="text-xl text-cyan-300 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-pink-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.493.998.108-.776.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub: <a href="https://github.com/23BCE0066" target="_blank" rel="noopener noreferrer" class="hover:underline ml-2">mehulgoyal</a>
+                    </p>
+                    <p class="text-xl text-pink-400 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn: <a href="https://www.linkedin.com/in/mehul-goyal-8a3a96279/" target="_blank" rel="noopener noreferrer" class="hover:underline ml-2">mehulgoyal</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 bg-opacity-70 text-center py-6 text-gray-400 text-sm mt-auto">
+        <p>&copy; 2023 QuizMaster. All rights reserved.</p>
+    </footer>
+
+    <!-- Message Box Container -->
+    <div id="messageBoxContainer"></div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
