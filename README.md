@@ -1,4 +1,4 @@
-                                            My Web Development Portfolio: A Collection of Interactive Projects
+               My Web Development Portfolio: A Collection of Interactive Projects
 
 This repository showcases a collection of interactive web applications developed to demonstrate my skills in front-end development, UI/UX design, and basic application logic. Each project is built with a focus on clean code, responsiveness, and engaging user experiences, often incorporating modern immersive design principles.
 
