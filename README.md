@@ -1,9 +1,9 @@
-               My Web Development Portfolio: A Collection of Interactive Projects
+                  My Web Development Portfolio: A Collection of Interactive Projects
 
 This repository showcases a collection of interactive web applications developed to demonstrate my skills in front-end development, UI/UX design, and basic application logic. Each project is built with a focus on clean code, responsiveness, and engaging user experiences, often incorporating modern immersive design principles.
 
 
-                                                                    Technologies Used
+                                                            Technologies Used
                                                                     
 Across these projects, the primary technologies utilized include:
 HTML5: For semantic structure and content organization.
@@ -14,7 +14,7 @@ Firebase Firestore (for QuizMaster - future iteration): For cloud-based data sto
 localStorage: For client-side data persistence in some projects.
 
 
-                                                                    Project Structure
+                                                                 Project Structure
                                                                     
 Each project within this collection typically follows a standard web development structure:
 index.html: The main entry point for the web application.
@@ -22,7 +22,7 @@ style.css: Contains all project-specific CSS rules.
 script.js: Implements the core JavaScript logic.
 
 
-                                                                    How to Run Any Project
+                                                                How to Run Any Project
                                                                     
 Clone the repository:-  git clone <your-repository-url>
 
@@ -33,9 +33,9 @@ Navigate to the specific project directory:-  cd <ProjectName> # e.g., cd QuizMa
 Open index.html: Simply open the index.html file in your web browser.
 
 
-                                                                    Individual Project Overviews
+                                                               Individual Project Overviews
 
-                                                Here's a brief overview of each project included in this portfolio:
+                                         Here's a brief overview of each project included in this portfolio:
 
 
 1. QuizMaster: Interactive Quiz Platform
@@ -63,7 +63,7 @@ Short Explanation: An earlier iteration of my personal portfolio, serving as a c
 Tools Used: HTML, CSS, JavaScript.
 
 
-                                                                    Common Design Principles & Features
+                                                 Common Design Principles & Features
 
    
 Many of these projects embody a consistent design philosophy:
@@ -75,7 +75,7 @@ Responsive Design: Ensures optimal viewing and usability across various devices.
 Clean Codebase: Organized HTML, modular CSS, and clear JavaScript for maintainability.
 
 
-                                                                    Future Enhancements (Across Projects)
+                                                       Future Enhancements (Across Projects)
                                                                     
 ** Potential improvements that could be applied to these projects include:
 
